@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+
+    <title>SPA</title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <script src="../javascripts/angular.min.js"></script>
+    <script src="../javascripts/angular-route.min.js"></script>
+    <script src="../javascripts/controller.js"></script>
+    <script src="../javascripts/zingchart.min.js"></script>
+    <script src="../javascripts/zingchart-angularjs.js"></script>
+    <script src="../javascripts/pagination.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+    <nav role="navigation" class="navbar navbar-default">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li><a is-active-nav href="/#/">Home</a></li>
+                <li><a is-active-nav href="/#/todopagination">To-Do Pagination</a></li>
+                <li><a is-active-nav href="/#/graph">Graph</a></li>
+                <li><a is-active-nav href="/#/normalmsg">Normal Message</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+    <div ng-view></div>
+
+</body>
+
+</html>

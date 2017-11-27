@@ -1,0 +1,79 @@
+<!DOCTYPE Html>
+<html>
+<head>
+    <script src="../javascripts/angular.min.js"></script>
+    <script src="../javascripts/angular-route.min.js"></script>
+    <script src="../javascripts/controller.js"></script>
+    <script src="../javascripts/pagination.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+    <div class="jumbotron text-center" ng-controller="todopaginationController">
+        <form name="theForm" >
+
+            <h2>To-Do Task</h2>
+            <br><br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>&nbsp</th>
+                    <th>&nbsp</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" id="text" name="text" class="form-control" required minlength="2" maxlength="30" placeholder="Enter your task" ng-model="task.info">
+
+                        </div>
+                    </td>
+                    <td><button type="submit" class="btn btn-primary" ng-click="addTask(theForm.$valid)">Add Task</button></td>
+                    <td><button type="submit" class="btn btn-info"  ng-click="updateTask(theForm.$valid)">Update</button></td>
+                </tr>
+            </table>
+
+            <br>
+
+            <h3><u>Your Contact List </u></h3>
+        </form>
+
+        <table class="table">
+            <col width="650px"/>
+            <col width="550px"/>
+            <col width="650px"/>
+            <col width="350px"/>
+            <col width="350px"/>
+
+            <thead>
+            <tr>
+                <th>Tasks</th>
+                <th>&nbsp</th>
+                <th>&nbsp</th>
+            </tr>
+            </thead>
+            <tr dir-paginate="tasks in tasklist|itemsPerPage:3">
+                <td>{{tasks.info}}</td>
+                <td><button type="submit" class="btn btn-danger" ng-click="removeTask(tasks._id)">Delete</button></td>
+                <td><button type="submit" class="btn btn-warning"  ng-click="editTask(tasks._id)">Edit</button></td>
+            </tr>
+
+        </table>
+        <center>
+            <dir-pagination-controls
+                    max-size="5"
+                    direction-links = "true"
+                    boundary-links="true">
+            </dir-pagination-controls>
+        </center>
+
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <title>Contact List</title>
+
+    <style>
+        .ng-valid[required], .ng-valid.required {
+            border:1px; solid: #3aa02c
+        }
+        .ng-invalid:not(form){
+            border:1px; solid: #ff251c
+        }
+    </style>
+
+</head>
+    <body>
+
+        <div class="container main-content" ng-controller="AppCtrl">
+            <form name="theForm" >
+
+                <h1 style="color: #ff457f"><underline>Contact List <b style="color: #be40ff"><i>Application</i></b></underline></h1>
+                <br><br>
+                <table class="table" >
+                    <thead style="color: #be40ff">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <div class="from-group">
+                                <input type="text" id="text" name="text" class="form-control" required minlength="2" maxlength="30" placeholder="Enter your name" ng-model="contact.name">
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            <div class="form-group" ng-class="{'has-error': !theForm.email.$valid, 'has-success': !theForm.email.$valid}">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" ng-model="contact.email" required>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Enter your number" ng-model="contact.number" required>
+                            </div>
+                        </td>
+
+                        <td><button type="submit" class="btn btn-primary" ng-click="addContact(theForm.$valid)">Add Contact</button></td>
+                        <td><button type="submit" class="btn btn-info"  ng-click="update(theForm.$valid)">Update</button></td>
+                    </tr>
+                </table>
+                <br><
+                <h3 style="color: #ff457f"><u>Your Contact List </u></h3>
+            </form>
+
+                <table class="table">
+                    <col width="650px"/>
+                    <col width="550px"/>
+                    <col width="650px"/>
+                    <col width="350px"/>
+                    <col width="350px"/>
+
+                    <thead style="color: #be40ff">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Action</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tr dir-paginate="contact in contactlist|itemsPerPage:5">
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.email}}</td>
+                        <td>{{contact.number}}</td>
+                        <td><button type="submit" class="btn btn-danger" ng-click="remove(contact._id)">Delete</button></td>
+                        <td><button type="submit" class="btn btn-warning"  ng-click="edit(contact._id)">Edit</button></td>
+                    </tr>
+
+                </table>
+                <dir-pagination-controls
+                    max-size="5"
+                    direction-links = "true"
+                    boundary-links="true">
+                </dir-pagination-controls>
+
+
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="controllers/controller.js"></script>
+        <script src="javascripts/pagination.js"></script>
+    </body>
+</html>
